@@ -28,17 +28,22 @@ def solve():
 
         candidates_collection = set()
         # calculate candidates
-        left_half_start = int(start[:len_start // 2])
-        left_half_stop = int(stop[:math.ceil(len_stop / 2)])
+        left_half_start = start[:len_start // 2]
+        left_half_stop = stop[:math.ceil(len_stop / 2)]
+        
         lens_range = list(range(len_start, len_stop + 1))
-        for candidate_half_sample in range(left_half_start, left_half_stop + 1):
+        multipliers_by_sample_len = {
+            sample_len: set(full_len // sample_len for full_len in lens_range)
+            for sample_len in range(1, len(left_half_stop) + 1)
+        }
+        
+        for candidate_half_sample in range(int(left_half_start), int(left_half_stop) + 1):
             candidate_half_sample_str = str(candidate_half_sample)
             
             for candidate_sample_len in range(1, len(candidate_half_sample_str) + 1):
                 candidate_sample = candidate_half_sample_str[:candidate_sample_len]
                 
-                multipliers = set(full_len // candidate_sample_len for full_len in lens_range)
-                for multiplier in multipliers:
+                for multiplier in multipliers_by_sample_len[candidate_sample_len]:
                     candidate = int(str(candidate_sample) * multiplier)
                     if candidate in candidates_collection:
                         continue
