@@ -15,7 +15,7 @@ def get_input_data(day: int) -> str:
     return data
 
 
-def post_answer(day: int, part: str, answer: typing.Any) -> None:
+def post_answer(day: int, part: int, answer: typing.Any) -> None:
     day = str(day)
     part = str(part)
     answer = str(answer)
