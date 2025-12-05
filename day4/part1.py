@@ -33,8 +33,9 @@ def solve():
                     nearly_rolls_count += matrix[y][x] == paper_roll_sign
                     if nearly_rolls_count == 4:
                         break
-                if nearly_rolls_count == 4:
-                    break
+                else:
+                    continue
+                break
             else:
                 final_count += 1
     
