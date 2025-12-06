@@ -13,7 +13,6 @@ def solve():
     final_count = 0
     
     paper_roll_sign = "@"
-    paper_roll_sign_to_remove = "#"
     empty_sign = "."
     empty_row = [empty_sign * len(data[0])]
     matrix = empty_row + data + empty_row
@@ -24,10 +23,6 @@ def solve():
         rolls_to_remove_count = 0
         for row_index, row in enumerate(matrix):
             for column_index, element in enumerate(row):
-                if element == paper_roll_sign_to_remove:
-                    matrix[row_index][column_index] = empty_sign
-                    continue
-                
                 if element == empty_sign:
                     continue
                 
@@ -44,7 +39,7 @@ def solve():
                         continue
                     break
                 else:
-                    matrix[row_index][column_index] = paper_roll_sign_to_remove
+                    matrix[row_index][column_index] = empty_sign
                     rolls_to_remove_count += 1
                     final_count += 1
         
